@@ -1,0 +1,34 @@
+/*  Border Box Fix
+apply a natural box layout model to all elements, 
+but allowing components to change */
+html {
+	margin: 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body {
+	padding: 20px;
+}
+h2 {
+    padding-top: 10px;
+    border-top: solid black 2px;
+}
+#insert {
+	display: box;
+	margin: 0 auto;
+	width: 1000px;
+	text-align: center;
+}
+.holder {
+    margin-bottom: 45px;
+}
+.thumbnail {
+    display: block;
+    margin: 0 auto;
+}
+.thumbnail:hover {
+    cursor: pointer;
+}

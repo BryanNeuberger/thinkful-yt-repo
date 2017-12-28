@@ -8,12 +8,16 @@
     <script type="text/javascript" src="scripts.js"></script>
 </head>
 <body>
-    <input aria-label="Search Bar input" type="text" id="search" placeholder="Search You Tube Here">
-    <button id="btn" class="btn">Search YouTube</button>
+    <form action="#" name="yt-search">
+        <input aria-label="Search Bar input" type="text" id="search" 
+            placeholder="Search You Tube Here" required="true">
+        <button type="submit" id="btn" class="btn">Search YouTube</button>
+    </form>
+    
     <p id="verify">What would you like to search?</p>
     <button id='back'>Return to Previous Results</button>
     <button id='next'>Show more results</button>
-    <div id="insert">
+    <div id="insert" role="main" aria-live="assertive" hidden>
 <!--        insert result templates in here    -->
     </div>
 </body>

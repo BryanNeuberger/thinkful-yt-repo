@@ -4,23 +4,32 @@ let globalUserInput = '';
 let keyToAddNext = '';
 let keyToAddBack = '';
 
+$('form[name=yt-search]').on('submit', e => {
+  e.preventDefault();
+});
+
 const handleBtnClick = () => {
 
   $('#btn').on('click', event => {
-    $('#next').show();
-    //get users input text they want to search
-    const userSearch = $("#search").val();
 
-    globalUserInput = userSearch;
+     if ($('#search').val() !== '') {
 
-    //reset the search the field
-    $("#search").val('');
+      $('#insert').prop('hidden', false);
+      $('#next').show();
+      //get users input text they want to search
+      const userSearch = $("#search").val();
 
-    //place text inside the p element to verify the user's search
-    $('#verify').text(`You searched for: ${userSearch}`);
+      globalUserInput = userSearch;
 
-    $('#insert').empty('div');
-    parseJsonResponse(fetchAPI(userSearch));
+      //place text inside the p element to verify the user's search
+      $('#verify').text(`You searched for: ${userSearch}`);
+
+      $('#insert').empty('div');
+      parseJsonResponse(fetchAPI(userSearch));
+     }
+
+     //reset the search the field
+      $("#search").val('');
   })
 
   getNextPage();
@@ -46,6 +55,8 @@ const parseJsonResponse = (queryPassed) => {
 
     keyToAddNext = response.nextPageToken;
 
+    const totalResults = response.pageInfo.totalResults;
+    $('#insert').append(`<p>Total Results Returned: ${totalResults}</p>`)
     if (response.prevPageToken !== null) {
       keyToAddBack = response.prevPageToken;
     }
@@ -64,6 +75,7 @@ const parseJsonResponse = (queryPassed) => {
         <h2>${title}</h2>
         <a href='https://youtu.be/${id}' target='_blank'>
           <img alt='Image for ${title}' class="thumbnail" src=${thumbnail} id=${id} />
+        </a>
       </div>`);
     }
 
